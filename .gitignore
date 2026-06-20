@@ -1,0 +1,55 @@
+# ===========================
+# Unity 项目 .gitignore
+# 参考: https://github.com/github/gitignore/blob/main/Unity.gitignore
+# ===========================
+
+# Unity 生成的文件夹
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Dd]ebug/
+[Rr]elease/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+
+# Unity 生成的 .csproj 和 .sln 文件
+*.csproj
+*.sln
+*.unityproj
+
+# Visual Studio / Rider 文件
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+
+# JetBrains Rider IDE
+.idea/
+*.sln.iml
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# C# IDE 缓存文件
+.vs/
+*.pidb
+*.booproj
+
+# 编译输出
+*.exe
+*.dll
+*.pdb
+*.mdb
+*.apk
+*.aab
+*.app
+*.ipa
+
+# Unity 生成的 .asset 文件 (如果存在由 Unity 自动创建)
+# 保留 [Aa]ssets 下的 .meta 文件，它们是版本控制必需的
