@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable UsesMono="1" CheatEngineTableVersion="52">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"己方血量"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"UnityPlayer.dll"+02126298</Address>
+      <Offsets>
+        <Offset>78</Offset>
+        <Offset>18</Offset>
+        <Offset>8</Offset>
+        <Offset>D0</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"敌方血量"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"UnityPlayer.dll"+021262C8</Address>
+      <Offsets>
+        <Offset>48</Offset>
+        <Offset>18</Offset>
+        <Offset>8</Offset>
+        <Offset>D0</Offset>
+        <Offset>108</Offset>
+      </Offsets>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <Comments>关于表格信息:
+</Comments>
+</CheatTable>

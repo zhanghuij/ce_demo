@@ -4,10 +4,13 @@
     public uint hp = 0;
     public uint mp = 0;
     public float speed = 0;
-    public Player(string name, uint hp)
+    public int team = 0;
+    
+    public Player(string name, uint hp, int team = 0)
     {
         this.name = name;
         this.hp = hp;
+        this.team = team;
     }
     
     public void Hurt(uint damage)
