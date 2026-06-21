@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable UsesMono="1" CheatEngineTableVersion="52">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"己方血量"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"UnityPlayer.dll"+02126298</Address>
+      <Offsets>
+        <Offset>78</Offset>
+        <Offset>18</Offset>
+        <Offset>8</Offset>
+        <Offset>D0</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"敌方血量"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"UnityPlayer.dll"+021262C8</Address>
+      <Offsets>
+        <Offset>48</Offset>
+        <Offset>18</Offset>
+        <Offset>8</Offset>
+        <Offset>D0</Offset>
+        <Offset>108</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"己方锁血"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : ce_demo.exe
+  Version: 
+  Date   : 2026-06-21
+  Author : lcand
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 46 18 48 8B 34 24 48 83 C4 18) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+cmp [rsi+24],1
+je code
+jmp return
+
+code:
+  mov [rsi+18],eax
+  mov rsi,[rsp]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 46 18 48 8B 34 24
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 148BEEE1BD4
+
+148BEEE1BB8: 00 00        - add [rax],al
+148BEEE1BBA: 00 00        - add [rax],al
+148BEEE1BBC: 00 00        - add [rax],al
+148BEEE1BBE: 00 00        - add [rax],al
+148BEEE1BC0: 48 83 EC 18  - sub rsp,18
+148BEEE1BC4: 48 89 34 24  - mov [rsp],rsi
+148BEEE1BC8: 48 8B F2     - mov rsi,rdx
+148BEEE1BCB: 83 3E 00     - cmp dword ptr [rsi],00
+148BEEE1BCE: 8B 46 18     - mov eax,[rsi+18]
+148BEEE1BD1: 83 E8 05     - sub eax,05
+// ---------- INJECTING HERE ----------
+148BEEE1BD4: 89 46 18     - mov [rsi+18],eax
+// ---------- DONE INJECTING  ----------
+148BEEE1BD7: 48 8B 34 24  - mov rsi,[rsp]
+148BEEE1BDB: 48 83 C4 18  - add rsp,18
+148BEEE1BDF: C3           - ret 
+148BEEE1BE0: 01 04 01     - add [rcx+rax],eax
+148BEEE1BE3: 00 04 22     - add [rdx],al
+148BEEE1BE6: 00 00        - add [rax],al
+148BEEE1BE8: 00 00        - add [rax],al
+148BEEE1BEA: 00 00        - add [rax],al
+148BEEE1BEC: 00 00        - add [rax],al
+148BEEE1BEE: 00 00        - add [rax],al
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>替换了 mov [rax+18],ecx</Description>
+      <AddressString>1C4AE141498</AddressString>
+      <Before>
+        <Byte>48</Byte>
+        <Byte>18</Byte>
+        <Byte>83</Byte>
+        <Byte>E9</Byte>
+        <Byte>05</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>48</Byte>
+        <Byte>18</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>34</Byte>
+        <Byte>24</Byte>
+        <Byte>48</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>替换了 mov [rsi+18],eax</Description>
+      <AddressString>148BEEE1BD4</AddressString>
+      <Before>
+        <Byte>46</Byte>
+        <Byte>18</Byte>
+        <Byte>83</Byte>
+        <Byte>E8</Byte>
+        <Byte>05</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>46</Byte>
+        <Byte>18</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>34</Byte>
+        <Byte>24</Byte>
+        <Byte>48</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+  <Comments>关于表格信息:
+</Comments>
+</CheatTable>
