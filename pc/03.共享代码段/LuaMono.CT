@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable UsesMono="1" CheatEngineTableVersion="52">
+  <Forms>
+    <CETrainer Class="TTrainerForm" Encoding="Ascii85">=N,}!8${cz?1FN)5,C6lt[%[d*hP,OKVZFH$0y9K/y{KU5i#DKvsWJPSmW9AC87XD6i]q[Py)V34IL6a9TE+f+AmEeG{okJcE/MFzPp4p(]@1H-kUeyH{Adg]E=tBu-(,EDGVu0QbZesj!f5@eQmVR0aJe_YfY5(2Tc77s394v+GuL1l9(zDd!??x#F9hgl9W,]b:#?:-LTdTLw^d*.g{@P*rxqRT%4ekEuz]-dmgOp5:]jE=)QzQQYTptqgr-wfGCPhtHE#Bk?nNmQ=S+Bl%HJnGK?BvB;A2Cl]#n-icsouFGRH/f_xt#e)GW{LAoV:]1R2c+rDqMW1KMVXa-*{;o{p]5!^t^mAV2XbEOP]!H;0Jim;I}2_G@P,4oxV5V,t[Ty{8MPjwCA,_R0@LxlHI^xG]PJ8Y3?PD1Yb8C%)X-peWRrhJVWjD}$mvXs9;2zx$[5mic^!hyQkgppA#V}nKBNs?q-8DOO/@84Ey?CQ}fAk#KQ2g#9P3h+O-k8Ut1-[?#9IIWTVBGZ/=B1gIz.TlUrbi]ST=I3x8l#)qGEc-NIgs#c$CdYtt94MBV=smJNB5idtmB%*!*haMMIm.yN-%,f@]mSQxl4p*8HH[PoO!K-iDh(!pXwv2_P).#L,1];-oirK2ykLScLb3W2xSSttkSLpUP^a(dEKw{cZ.CGuCu3eZf]T341=X9F4Tx*m#}v9?#z:n9Ty%o:/dg4z_KW2^g{m{}%juDfiFJ]Mpz}$G$k;!Mwl^*)RNi}Xx$UiHOZ]:rmom;+fk0M:9x#enG}j]N74m*^m{5J#,?_M+qF%2#X+3][IWfvZ?67vnsia=BbIBLF2]5yttQKaDWf7q4PkC9tRv0?u.x,Tux[K?3c43zri{SYI?(j,Vgcpr@ywY;)GjO#?:z_$}NO#*(HI*yqzKbYZ,a$WYZ)@6;kjK#AFb{Q6p,INAp,o@?l@)GB80lJXvQJX9,Mvg*)*J8IuR_4*/])QBY(ZSzZSQW(sm-.-nz!aFf_fPQ@;$HHe=EMC@5^EI1lg;6f!o/?hkO41Ql$8Wk*C_@*zgPR0-+7lL6B+pPHw0n;=?@n)Y!f)/S(5k/_p:f@[qFpNAm],qXU;;W[oeLrc$i5CSgN#Uo,EeglH07ziHReB%.Xz#n)@2]N*!9Sm/eG$wBPAZ.H7Cxl$OF+@:AjwdDwRxQ@!1C4-n(6Hamjy!Z^9uQ{Lg+yA5-TyF{l%DG)Kvs[Cr(-JZUu77.]=SIAfmf*)M%k_z[uFA]Ey_v2q/k83fBG/E1Z%HyPl*XY3FO*qw[%4/vDQ)p:[BCyjf31E7tCRP5K6(5xfAaqG$-B[*nPL{8eZdSq]SNiwgNuKHg)Ry;GZ[30</CETrainer>
+  </Forms>
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"己方血量"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"UnityPlayer.dll"+02126298</Address>
+      <Offsets>
+        <Offset>78</Offset>
+        <Offset>18</Offset>
+        <Offset>8</Offset>
+        <Offset>D0</Offset>
+      </Offsets>
+      <Hotkeys>
+        <Hotkey>
+          <Action>Increase Value</Action>
+          <Keys>
+            <Key>97</Key>
+          </Keys>
+          <Value>10</Value>
+          <Description>加血</Description>
+          <ID>0</ID>
+        </Hotkey>
+        <Hotkey>
+          <Action>Decrease Value</Action>
+          <Keys>
+            <Key>99</Key>
+          </Keys>
+          <Value>10</Value>
+          <Description>扣血</Description>
+          <ID>1</ID>
+        </Hotkey>
+      </Hotkeys>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"敌方血量"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"UnityPlayer.dll"+021262C8</Address>
+      <Offsets>
+        <Offset>48</Offset>
+        <Offset>18</Offset>
+        <Offset>8</Offset>
+        <Offset>D0</Offset>
+        <Offset>108</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"己方锁血"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : ce_demo.exe
+  Version: 
+  Date   : 2026-06-21
+  Author : lcand
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 46 18 48 8B 34 24 48 83 C4 18) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+cmp [rsi+18+c],1
+je code
+jmp return
+
+code:
+  mov [rsi+18],eax
+  mov rsi,[rsp]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 46 18 48 8B 34 24
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 148BEEE1BD4
+
+148BEEE1BB8: 00 00        - add [rax],al
+148BEEE1BBA: 00 00        - add [rax],al
+148BEEE1BBC: 00 00        - add [rax],al
+148BEEE1BBE: 00 00        - add [rax],al
+148BEEE1BC0: 48 83 EC 18  - sub rsp,18
+148BEEE1BC4: 48 89 34 24  - mov [rsp],rsi
+148BEEE1BC8: 48 8B F2     - mov rsi,rdx
+148BEEE1BCB: 83 3E 00     - cmp dword ptr [rsi],00
+148BEEE1BCE: 8B 46 18     - mov eax,[rsi+18]
+148BEEE1BD1: 83 E8 05     - sub eax,05
+// ---------- INJECTING HERE ----------
+148BEEE1BD4: 89 46 18     - mov [rsi+18],eax
+// ---------- DONE INJECTING  ----------
+148BEEE1BD7: 48 8B 34 24  - mov rsi,[rsp]
+148BEEE1BDB: 48 83 C4 18  - add rsp,18
+148BEEE1BDF: C3           - ret 
+148BEEE1BE0: 01 04 01     - add [rcx+rax],eax
+148BEEE1BE3: 00 04 22     - add [rdx],al
+148BEEE1BE6: 00 00        - add [rax],al
+148BEEE1BE8: 00 00        - add [rax],al
+148BEEE1BEA: 00 00        - add [rax],al
+148BEEE1BEC: 00 00        - add [rax],al
+148BEEE1BEE: 00 00        - add [rax],al
+}
+</AssemblerScript>
+      <Hotkeys>
+        <Hotkey>
+          <Action>Toggle Activation</Action>
+          <Keys>
+            <Key>98</Key>
+          </Keys>
+          <Description>锁血</Description>
+          <ID>0</ID>
+        </Hotkey>
+      </Hotkeys>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"拦截脚本"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048,SharedCodeSnippet:HurtBtnCallBack+14) 
+label(returnhere)
+label(originalcode)
+label(exit)
+alloc(pPlayer, 8)     // 1. 申请 8 个字节的内存，用来当做存放地址的“安全口袋”
+registerSymbol(pPlayer) // 2. 把这个口袋命名为 pPlayer，让其他脚本也能认得它
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+  mov [pPlayer], rsi  // 3. 核心：趁游戏不注意，把 rsi 里的玩家地址复制一份放到我们的口袋里
+
+originalcode:
+mov [rsi+18],eax
+mov rsi,[rsp]
+
+exit:
+jmp returnhere
+
+SharedCodeSnippet:HurtBtnCallBack+14:
+jmp newmem
+nop 2
+returnhere:
+
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+SharedCodeSnippet:HurtBtnCallBack+14:
+db 89 46 18 48 8B 34 24
+//mov [rsi+18],eax
+//mov rsi,[rsp]
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"自动汇编脚本"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+{$lua}
+-- 1. 查找 Hurt 函数
+local method = mono_findMethod('', 'Player', 'Hurt')
+
+-- 2. 注册给汇编
+registerSymbol("Hurt_Address", method)
+{$asm}
+
+alloc(newmem, 2048)
+createThread(newmem) // 创建一个新线程来主动执行这段代码
+
+newmem:
+  // 2. 模拟调用环境
+  // 假设你的玩家实例地址保存在一个叫 pPlayer 的全局指针里
+  // 汇编中，通常 rcx(x64) 或 ecx(x86) 存放实例指针 (this)
+  mov rcx, [pPlayer]
+  // rdx 存放第一个参数（比如加 1000 金币）
+  mov rdx, #1
+
+  // 3. 直接 call 该函数
+  call Hurt_Address
+
+  // 执行完记得返回，结束线程
+  ret
+
+[DISABLE]
+unregisterSymbol(Hurt_Address)
+dealloc(newmem)
+
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>替换了 mov [rax+18],ecx</Description>
+      <AddressString>1C4AE141498</AddressString>
+      <Before>
+        <Byte>48</Byte>
+        <Byte>18</Byte>
+        <Byte>83</Byte>
+        <Byte>E9</Byte>
+        <Byte>05</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>48</Byte>
+        <Byte>18</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>34</Byte>
+        <Byte>24</Byte>
+        <Byte>48</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>替换了 mov [rsi+18],eax</Description>
+      <AddressString>148BEEE1BD4</AddressString>
+      <Before>
+        <Byte>46</Byte>
+        <Byte>18</Byte>
+        <Byte>83</Byte>
+        <Byte>E8</Byte>
+        <Byte>05</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>46</Byte>
+        <Byte>18</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>34</Byte>
+        <Byte>24</Byte>
+        <Byte>48</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+  <Comments>关于表格信息:
+</Comments>
+  <LuaScript>--TRAINERGENERATORSTART--
+--这是自动生成的代码. 请在此区域内个修改代码
+--如果你更新了修改器代码，将被删除并重新写入
+
+--Uncomment the following line if this is a Cheat Table format trainer and you don't want CE to show (Tip, save as .CETRAINER alternatively)
+--hideAllCEWindows()
+
+RequiredCEVersion=7.7
+if (getCEVersion==nil) or (getCEVersion()&lt;RequiredCEVersion) then
+  messageDialog('Please install Cheat Engine '..RequiredCEVersion, mtError, mbOK)
+  closeCE()
+end
+addresslist=getAddressList()
+memrec0=addresslist.getMemoryRecordByID(0)
+memrec4=addresslist.getMemoryRecordByID(4)
+
+memrec0_hotkey0=memrec0.getHotkeyByID(0)
+memrec0_hotkey1=memrec0.getHotkeyByID(1)
+memrec4_hotkey0=memrec4.getHotkeyByID(0)
+
+function onHotkey0(Hotkey)
+  --Executed before the hotkey is handled
+  CETrainer.CHEAT0.setActive(true, 1500)
+  if gPlaySoundOnAction then
+    playSound(gActivateSound)
+  end
+end
+
+memrec0_hotkey0.onHotkey=onHotkey0
+function onHotkey1(Hotkey)
+  --Executed before the hotkey is handled
+  CETrainer.CHEAT1.setActive(true, 1500)
+  if gPlaySoundOnAction then
+    playSound(gActivateSound)
+  end
+end
+
+memrec0_hotkey1.onHotkey=onHotkey1
+function onPostHotkey2(Hotkey)
+  --Executed after the "toggle*" cheat got executed
+  local memrec=Hotkey.Owner
+  local isActive=memrec.Active --get the state after the hotkey got triggered
+  CETrainer.CHEAT2.setActive(isActive) --gui update, nothing else
+  if gPlaySoundOnAction then
+    if isActive then
+      playSound(gActivateSound)
+    else
+      playSound(gDeactivateSound)
+    end
+  end
+end
+
+memrec4_hotkey0.onPostHotkey=onPostHotkey2
+
+CETrainer.SEPERATOR.Visible=false
+
+getAutoAttachList().add("ce_demo.exe")
+gPlaySoundOnAction=false
+CETrainer.fixDPI() --remove this if you have already taken care of DPI issues yourself
+CETrainer.show()
+function AboutClick()
+  showMessage(gAboutText)
+end
+gAboutText=[[This trainer was made by Cheat Engine
+www.cheatengine.org]]
+
+function CloseClick()
+  --called by the close button onClick event, and when closing the form
+  closeCE()
+  return caFree --onClick doesn't care, but onClose would like a result
+end
+
+--TRAINERGENERATORSTOP--
+</LuaScript>
+</CheatTable>
