@@ -5,8 +5,8 @@
   </Forms>
   <CheatEntries>
     <CheatEntry>
-      <ID>6</ID>
-      <Description>"指针扫描结果"</Description>
+      <ID>42</ID>
+      <Description>"hp基址"</Description>
       <VariableType>4 Bytes</VariableType>
       <Address>"UnityPlayer.dll"+02126298</Address>
       <Offsets>
@@ -15,118 +15,35 @@
         <Offset>8</Offset>
         <Offset>D0</Offset>
       </Offsets>
-      <Hotkeys>
-        <Hotkey>
-          <Action>Increase Value</Action>
-          <Keys>
-            <Key>98</Key>
-          </Keys>
-          <Value>10</Value>
-          <Description>加血</Description>
-          <ID>0</ID>
-          <ActivateSound>Activate</ActivateSound>
-        </Hotkey>
-        <Hotkey>
-          <Action>Decrease Value</Action>
-          <Keys>
-            <Key>99</Key>
-          </Keys>
-          <Value>10</Value>
-          <Description>扣血</Description>
-          <ID>1</ID>
-        </Hotkey>
-      </Hotkeys>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>7</ID>
-      <Description>"自动汇编脚本"</Description>
-      <VariableType>Auto Assembler Script</VariableType>
-      <AssemblerScript>{ Game   : ce_demo.exe
-  Version: 
-  Date   : 2026-06-21
-  Author : lcand
-  描述 : 
-
-  &lt;Optional info&gt;
-}
-
-[ENABLE]
-
-
-aobscan(INJECT,83 E9 05 89 48 18 48 8B 34 24 48 83 C4 08) // should be unique
-alloc(newmem,$1000,INJECT)
-
-label(code)
-label(return)
-
-newmem:
-  add ecx,64
-  mov [rax+18],ecx
-  jmp return
-
-code:
-  sub ecx,05
-  mov [rax+18],ecx
-  jmp return
-
-INJECT:
-  jmp newmem
-  nop
-return:
-registersymbol(INJECT)
-
-[DISABLE]
-
-INJECT:
-  db 83 E9 05 89 48 18
-
-unregistersymbol(INJECT)
-dealloc(newmem)
-
-{
-// ORIGINAL CODE - INJECTION POINT: 19940117AF5
-
-19940117AD8: 00 00        - add [rax],al
-19940117ADA: 00 00        - add [rax],al
-19940117ADC: 00 00        - add [rax],al
-19940117ADE: 00 00        - add [rax],al
-19940117AE0: 48 83 EC 08  - sub rsp,08
-19940117AE4: 48 89 34 24  - mov [rsp],rsi
-19940117AE8: 48 8B F1     - mov rsi,rcx
-19940117AEB: 48 8B 46 20  - mov rax,[rsi+20]
-19940117AEF: 83 38 00     - cmp dword ptr [rax],00
-19940117AF2: 8B 48 18     - mov ecx,[rax+18]
-// ---------- INJECTING HERE ----------
-19940117AF5: 83 E9 05     - sub ecx,05
-// ---------- DONE INJECTING  ----------
-19940117AF8: 89 48 18     - mov [rax+18],ecx
-19940117AFB: 48 8B 34 24  - mov rsi,[rsp]
-19940117AFF: 48 83 C4 08  - add rsp,08
-19940117B03: C3           - ret 
-19940117B04: 00 00        - add [rax],al
-19940117B06: 00 00        - add [rax],al
-19940117B08: 01 04 01     - add [rcx+rax],eax
-19940117B0B: 00 04 02     - add [rdx+rax],al
-19940117B0E: 00 00        - add [rax],al
-19940117B10: 00 00        - add [rax],al
-}
-</AssemblerScript>
-      <Hotkeys>
-        <Hotkey>
-          <Action>Toggle Activation</Action>
-          <Keys>
-            <Key>97</Key>
-          </Keys>
-          <Description>加血</Description>
-          <ID>0</ID>
-          <ActivateSound TTS="">免疫扣血已激活</ActivateSound>
-          <DeactivateSound>Deactivate</DeactivateSound>
-        </Hotkey>
-      </Hotkeys>
     </CheatEntry>
   </CheatEntries>
   <UserdefinedSymbols/>
   <Structures StructVersion="2">
+    <Structure Name="Player" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="16" Vartype="Pointer" Bytesize="8" OffsetHex="00000010" Description="name" DisplayMethod="unsigned integer">
+          <Structure Name="String" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+            <Elements>
+              <Element Offset="16" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000010" Description="_stringLength" DisplayMethod="unsigned integer"/>
+              <Element Offset="20" Vartype="Unicode String" Bytesize="999" OffsetHex="00000014" Description="_firstChar" DisplayMethod="unsigned integer"/>
+            </Elements>
+          </Structure>
+        </Element>
+        <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="hp" DisplayMethod="unsigned integer"/>
+        <Element Offset="28" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000001C" Description="mp" DisplayMethod="unsigned integer"/>
+        <Element Offset="32" Vartype="Float" Bytesize="4" OffsetHex="00000020" Description="speed" DisplayMethod="unsigned integer"/>
+        <Element Offset="36" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000024" Description="team" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="Player" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="16" Vartype="Pointer" Bytesize="8" OffsetHex="00000010" Description="name" DisplayMethod="unsigned integer"/>
+        <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="hp" DisplayMethod="unsigned integer"/>
+        <Element Offset="28" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000001C" Description="mp" DisplayMethod="unsigned integer"/>
+        <Element Offset="32" Vartype="Float" Bytesize="4" OffsetHex="00000020" Description="speed" DisplayMethod="unsigned integer"/>
+        <Element Offset="36" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000024" Description="team" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
     <Structure Name="Player" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
       <Elements>
         <Element Offset="16" Vartype="Pointer" Bytesize="8" OffsetHex="00000010" Description="name" DisplayMethod="unsigned integer">
@@ -146,7 +63,8 @@ dealloc(newmem)
   <Comments>关于表格信息:
 </Comments>
   <LuaScript>
---TRAINERGENERATORSTART--
+    <LuaScriptEntry Name=" 脚本  1 "/>
+    <LuaScriptEntry Name=" 脚本  2 ">--TRAINERGENERATORSTART--
 --这是自动生成的代码. 请在此区域内个修改代码
 --如果你更新了修改器代码，将被删除并重新写入
 
@@ -219,5 +137,6 @@ function CloseClick()
 end
 
 --TRAINERGENERATORSTOP--
-</LuaScript>
+</LuaScriptEntry>
+  </LuaScript>
 </CheatTable>
